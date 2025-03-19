@@ -27,18 +27,15 @@ class TestLogoNavigation:
 
         try:
             with allure.step('Дождаться открытия новой вкладки'):
-                WebDriverWait(driver, 60).until(EC.number_of_windows_to_be(2))
-            
+                new_window = home_page.wait_for_new_tab(driver, original_window)
+
             with allure.step('Переключиться на новую вкладку'):
-                new_window = [window for window in driver.window_handles if window != original_window][0]
                 driver.switch_to.window(new_window)
-                
+
                 with allure.step('Проверить URL в новой вкладке'):
-                    WebDriverWait(driver, 60).until(lambda d: "dzen.ru" in d.current_url or "yandex.ru" in d.current_url)
-                    current_url = driver.current_url
-                    allure.attach(current_url, name="New Tab URL", attachment_type=allure.attachment_type.TEXT)
+                    current_url = home_page.wait_for_url_in_new_tab(driver, "dzen.ru")
                     assert "dzen.ru" in current_url or "yandex.ru" in current_url
-        
+
         finally:
             with allure.step('Закрыть новую вкладку и вернуться в исходное окно'):
                 if len(driver.window_handles) > 1:
