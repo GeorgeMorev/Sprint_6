@@ -1,0 +1,1 @@
+{"uuid": "6739a6a3-2fe6-41aa-a158-bdb2b9c927b9", "children": ["e91acc63-bbee-4051-9692-6428daa08b20"], "befores": [{"name": "home_page", "status": "passed", "steps": [{"name": "Принять куки", "status": "passed", "start": 1742470334382, "stop": 1742470334622}], "start": 1742470334381, "stop": 1742470334623}], "start": 1742470334381, "stop": 1742470334847}
